@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Rock, Paper, Scissors</title>
+<style>
+body {
+background-color: rgb(211, 211, 211);
+margin: 0;
+padding: 0;
+}
+header {
+background-color: rgb(103, 103, 137);
+text-align: center;
+}
+header > h1 {
+color: rgb(211, 211, 211);
+font-family: Sans-serif;
+text-align: center;
+font-size: 32px;
+margin: 0;
+padding: 0;
+}
+h2 {
+text-align: center;
+color: rgb(103, 103, 137);
+font-family: Sans-serif;
+}
+p{
+color: rgb(103, 103, 137);
+font-family: Sans-serif;
+font-size: 16px;
+text-align: center;
+}
+button {
+height: 40px;
+width: 100px;
+}
+.badge {
+background: rgb(215, 0, 0);
+color: white;
+padding: 2px 10px;
+font-size: 14px;
+font-family: Asap, sans-serif;
+}
+.scoreCard {
+border-style: solid;
+border-width: 2px;
+border-color: white;
+width: 200px;
+margin: 20px auto;
+text-align: center;
+font-family: Sans-serif;
+position: relative;
+}
+#player {
+color: white;
+top: 40%;
+left: -16%;
+position: absolute;
+}
+#computer {
+color: white;
+top: 40%;
+right: -15%;
+position: absolute;
+}
+.action-message {
+font-weight: bold;
+font-size: 20px;
+}
+#empty {
+font-weight: bold;
+font-size: 24px;
+}
+.choices {
+text-align: center;
+margin: 20px;
+}
+.choice {
+display: inline-block;
+margin: 10px;
+border: 2px solid;
+border-radius: 50%;
+}
+.choice:hover {
+background-color: rgb(200, 200, 200);
+}
+.bottomBtn {
+position: absolute;
+display: inline-block;
+top: 99%;
+}
+.button {
+width: 50px;
+height: 20px;
+color: rgb(103, 103, 137);
+}
+.button1 {
+width: 175px;
+height: 20px;
+color: rgb(103, 103, 137);
+}
+.button2 {
+width: 115px;
+height: 20px;
+color: rgb(103, 103, 137);
+}
+.compChoices {
+margin: 0px;
+visibility: hidden;
+}
+.compChoice {
+display: inline-block;
+visibility: hidden;
+}
+</style>
+</head>
+<body onkeydown="playAgain()">
+<header>
+<h1>Rock Paper Scissors</h1>
+</header>
+<div class="scoreCard">
+	<div class="badge" id="player">Player</div>
+		<h1 id="score" style="color: rgb(103, 103, 137);">0:0</h1>
+	<div class="badge" id="computer">Comp</div>
+</div>
+<h2 id="result">Result will come up here</h2>
+<div class="choices">
+<p class="action-message" id="action-message">Pick One:</p>
+	<div class="choice" id="rock">
+		<img src="rockTrans.png" alt="">
+	</div>
+	<div class="choice" id="paper">
+		<img src="paperTrans.png" alt="">
+	</div>
+	<div class="choice" id="scissors">
+		<img src="scissorTrans.png" alt="">
+	</div>
+</div>	
+<p class="action-message">Computer Choice:</p>
+<div class="compChoices">
+	<div class="compChoice" id="compRock">
+		<img src="rockTrans.png" alt="">
+	</div>
+	<div class="compChoice" id="compPaper">
+		<img src="paperTrans.png" alt="">
+	</div>
+	<div class="compChoice" id="compScissors">
+		<img src="scissorTrans.png" alt="">
+	</div>
+</div>
+<script>
+let userScore = 0;
+let compScore = 0;
+const score = document.getElementById("score");
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+const compRock = document.getElementById("compRock");
+const compPaper = document.getElementById("compPaper");
+const compScissors = document.getElementById("compScissors");
+const result = document.getElementById("result");
+const actionMessage = document.getElementById("action-message");
+rock.addEventListener('click', function() {
+compRock.style.visibility = 'hidden';
+compPaper.style.visibility = 'hidden';
+compScissors.style.visibility = 'hidden';
+paper.style.visibility = 'hidden';
+scissors.style.visibility = 'hidden';
+let theirChoice = Math.floor(Math.random() * 3);
+if (theirChoice === 0) {
+result.innerHTML = 'It\'s a tie! Press any key to play again';
+compRock.style.visibility = 'visible'
+} else if (theirChoice === 1) {
+result.innerHTML = 'You lose! Press any key to play again';
+compPaper.style.visibility = 'visible'
+compScore += 1;
+score.innerHTML = `${userScore}:${compScore}`;
+} else {
+result.innerHTML = 'You win! Press any key to play again';
+compScissors.style.visibility = 'visible';
+userScore += 1;
+score.innerHTML = `${userScore}:${compScore}`;
+};
+actionMessage.innerHTML = 'Your Choice was:'
+});
+paper.addEventListener('click', function() {
+compRock.style.visibility = 'hidden';
+compPaper.style.visibility = 'hidden';
+compScissors.style.visibility = 'hidden';
+rock.style.visibility = 'hidden';
+scissors.style.visibility = 'hidden';
+let theirChoice = Math.floor(Math.random() * 3);
+if (theirChoice === 0) {
+result.innerHTML = 'It\'s a tie! Press any key to play again';
+compPaper.style.visibility = 'visible'
+} else if (theirChoice === 1) {
+result.innerHTML = 'You lose! Press any key to play again';
+compScissors.style.visibility = 'visible'
+compScore += 1;
+score.innerHTML = `${userScore}:${compScore}`;
+} else {
+result.innerHTML = 'You win! Press any key to play again';
+compRock.style.visibility = 'visible'
+userScore += 1;
+score.innerHTML = `${userScore}:${compScore}`;
+};
+});
+scissors.addEventListener('click', function() {
+compRock.style.visibility = 'hidden';
+compPaper.style.visibility = 'hidden';
+compScissors.style.visibility = 'hidden';
+rock.style.visibility = 'hidden';
+paper.style.visibility = 'hidden';
+let theirChoice = Math.floor(Math.random() * 3);
+if (theirChoice === 0) {
+result.innerHTML = 'It\'s a tie! Press any key to play again';
+compScissors.style.visibility = 'visible'
+} else if (theirChoice === 1) {
+result.innerHTML = 'You lose! Press any key to play again';
+compRock.style.visibility = 'visible'
+compScore += 1;
+score.innerHTML = `${userScore}:${compScore}`;
+} else {
+result.innerHTML = 'You win! Press any key to play again';
+compPaper.style.visibility = 'visible'
+userScore += 1;
+score.innerHTML = `${userScore}:${compScore}`;
+};
+});
+function playAgain() {
+rock.style.visibility = 'visible';
+paper.style.visibility = 'visible';
+scissors.style.visibility = 'visible';
+compRock.style.visibility = 'hidden';
+compPaper.style.visibility = 'hidden';
+compScissors.style.visibility = 'hidden';
+result.innerHTML = 'Result will come up here'
+}
+</script>
+</body>
+</html>
