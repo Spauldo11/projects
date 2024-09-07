@@ -748,8 +748,8 @@ def play():
     """
     Determine the player's hand
     """
-    player_card1 = 2
-    player_card2 = 2
+    player_card1 = random.randrange(1, 14)
+    player_card2 = random.randrange(1, 14)
     high_comp_hand = 0
     low_comp_hand = 0
     high_player_hand = 0
